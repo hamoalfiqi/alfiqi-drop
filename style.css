@@ -1,0 +1,226 @@
+/* RTL and Mobile-First Design */
+body {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    font-family: 'Noto Sans Arabic', Arial, sans-serif;
+    direction: rtl;
+}
+
+/* Card Styling */
+.card {
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+.card-header {
+    border-radius: 15px 15px 0 0 !important;
+    font-weight: 600;
+}
+
+/* Preview Area */
+#previewWrapper {
+    min-height: 500px;
+    background: white;
+    border-radius: 0 0 15px 15px;
+    overflow: hidden;
+}
+
+.text-input {
+    border: none;
+    padding: 30px;
+    min-height: 400px;
+    font-size: 200px;
+    line-height: 1.4;
+    text-align: center;
+    outline: none;
+    background: transparent;
+    resize: none;
+    width: 100%;
+    word-wrap: break-word;
+    direction: rtl;
+    unicode-bidi: bidi-override;
+    font-family: 'Noto Sans Arabic', Arial, sans-serif;
+}
+
+/* Grid Overlay */
+.grid-overlay {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-size: 20px 20px;
+    background-image:
+        linear-gradient(to right, rgba(0,0,0,0.1) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(0,0,0,0.1) 1px, transparent 1px);
+    pointer-events: none;
+    z-index: 10;
+}
+
+
+
+/* Form Controls */
+.form-range {
+    cursor: pointer;
+}
+
+.form-range::-webkit-slider-thumb {
+    background: #007bff;
+    border: 2px solid white;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.form-range::-moz-range-thumb {
+    background: #007bff;
+    border: 2px solid white;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+/* Color Picker Enhancements */
+.form-control-color {
+    height: 38px;
+    border-radius: 6px 0 0 6px;
+}
+
+/* Button Styling */
+.btn {
+    border-radius: 8px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Progress Bar */
+.progress {
+    height: 8px;
+    border-radius: 4px;
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+.progress-bar {
+    border-radius: 4px;
+    transition: width 0.3s ease;
+}
+
+/* Variable Font Axes */
+.axis-slider {
+    margin-bottom: 20px;
+}
+
+.axis-label {
+    font-size: 14px;
+    font-weight: 500;
+    color: #495057;
+    margin-bottom: 5px;
+    display: block;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+    .container-fluid {
+        padding: 10px;
+    }
+    
+    .text-input {
+        font-size: 100px;
+        padding: 20px;
+        min-height: 300px;
+    }
+    
+    .card-body {
+        padding: 15px;
+    }
+    
+    .btn {
+        padding: 12px;
+        font-size: 16px;
+    }
+    
+    .form-control,
+    .form-select {
+        font-size: 16px;
+        padding: 12px;
+    }
+    
+    .form-range {
+        height: 30px;
+    }
+    
+    h1.h3 {
+        font-size: 1.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .text-input {
+        font-size: 60px;
+        padding: 15px;
+        min-height: 250px;
+    }
+    
+    #previewWrapper {
+        min-height: 300px;
+    }
+    
+    .input-group .form-control {
+        font-size: 14px;
+    }
+}
+
+/* Touch-friendly elements */
+@media (pointer: coarse) {
+    .btn {
+        min-height: 44px;
+    }
+    
+    .form-control,
+    .form-select {
+        min-height: 44px;
+    }
+    
+    .form-range {
+        min-height: 44px;
+    }
+}
+
+/* Animation for loading */
+@keyframes pulse {
+    0% { opacity: 1; }
+    50% { opacity: 0.5; }
+    100% { opacity: 1; }
+}
+
+.loading {
+    animation: pulse 1.5s infinite;
+}
+
+/* Custom scrollbar for better mobile experience */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #c1c1c1;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #a8a8a8;
+}
+
+

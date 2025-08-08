@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Alfiqi Drop - أداة معاينة الخطوط المتقدمة</title>
+    
+    <!-- Google Fonts for Arabic Interface -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome for icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <!-- OpenType.js -->
+    <script src="https://cdn.jsdelivr.net/npm/opentype.js@1.3.4/dist/opentype.min.js"></script>
+    <!-- Custom CSS -->
+    <link href="static/css/style.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container-fluid">
+        <!-- Header -->
+        <header class="row">
+            <div class="col-12">
+                <div class="text-center py-3 bg-primary text-white rounded-3 my-3">
+                    <h1 class="h3 mb-0">
+                        <i class="fas fa-font"></i>
+                        Alfiqi Drop - أداة معاينة الخطوط المتقدمة
+                    </h1>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="row">
+            <!-- Control Panel -->
+            <div class="col-lg-4 col-md-12 mb-4">
+                <div class="card h-100">
+                    <div class="card-header bg-secondary text-white">
+                        <h5 class="mb-0">
+                            <i class="fas fa-cogs"></i>
+                            لوحة التحكم
+                        </h5>
+                    </div>
+                    <div class="card-body">
+                        <!-- Font Upload -->
+                        <div class="mb-4">
+                            <label for="fontUpload" class="form-label">
+                                <i class="fas fa-upload"></i>
+                                تحميل الخط
+                            </label>
+                            <input type="file" class="form-control" id="fontUpload" accept=".ttf,.otf,.woff2">
+                            <div class="progress mt-2" id="uploadProgress" style="display: none;">
+                                <div class="progress-bar" role="progressbar" style="width: 0%"></div>
+                            </div>
+                        </div>
+
+                        <!-- Font Size -->
+                        <div class="mb-4">
+                            <label for="fontSize" class="form-label">
+                                <i class="fas fa-text-height"></i>
+                                حجم الخط: <span id="fontSizeValue">200</span>px
+                            </label>
+                            <input type="range" class="form-range" id="fontSize" min="30" max="500" value="200">
+                        </div>
+
+                        <!-- Text Color -->
+                        <div class="mb-4">
+                            <label for="textColor" class="form-label">
+                                <i class="fas fa-palette"></i>
+                                لون النص
+                            </label>
+                            <div class="input-group">
+                                <input type="color" class="form-control form-control-color" id="textColor" value="#000000">
+                                <input type="text" class="form-control" id="textColorHex" value="#000000" maxlength="7">
+                            </div>
+                        </div>
+
+                        <!-- Background Color -->
+                        <div class="mb-4">
+                            <label for="backgroundColor" class="form-label">
+                                <i class="fas fa-fill-drip"></i>
+                                لون الخلفية
+                            </label>
+                            <div class="input-group">
+                                <input type="color" class="form-control form-control-color" id="backgroundColor" value="#ffffff">
+                                <input type="text" class="form-control" id="backgroundColorHex" value="#ffffff" maxlength="7">
+                            </div>
+                        </div>
+
+                        <!-- OpenType Features -->
+                        <div class="mb-4">
+                            <label for="features" class="form-label">
+                                <i class="fas fa-magic"></i>
+                                خصائص OpenType
+                            </label>
+                            <select class="form-select" id="features" multiple size="4">
+                            </select>
+                            <button class="btn btn-outline-primary btn-sm mt-2 w-100" id="applyFeatureToSelection">
+                                <i class="fas fa-check"></i>
+                                تطبيق على التحديد
+                            </button>
+                        </div>
+
+                        <!-- Variable Font Axes -->
+                        <div id="axesSliders" class="mb-4">
+                        </div>
+
+                        <!-- Action Buttons -->
+                        <div class="d-grid gap-2">
+                            <button class="btn btn-warning" id="copyCSS">
+                                <i class="fas fa-copy"></i>
+                                نسخ CSS
+                            </button>
+                            <button class="btn btn-secondary" id="toggleGrid">
+                                <i class="fas fa-th"></i>
+                                إظهار/إخفاء الشبكة
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Preview Area -->
+            <div class="col-lg-8 col-md-12">
+                <div class="card h-100">
+                    <div class="card-header bg-success text-white">
+                        <h5 class="mb-0">
+                            <i class="fas fa-eye"></i>
+                            معاينة النص
+                        </h5>
+                    </div>
+                    <div class="card-body p-0">
+                        <div id="previewWrapper" class="position-relative">
+                            <!-- Text Input Area -->
+                            <div id="richInput" contenteditable="true" class="text-input">
+                                اكتب النص هنا لمعاينة الخط
+                            </div>
+                            
+                            <!-- Grid Overlay -->
+                            <div id="grid" class="grid-overlay" style="display: none;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Bootstrap 5 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Custom JavaScript -->
+    <script src="static/js/color-picker.js"></script>
+    <script src="static/js/app.js"></script>
+</body>
+</html>
